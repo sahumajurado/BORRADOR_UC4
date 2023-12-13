@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Course
 
 # Create your views here.
 
@@ -7,7 +8,8 @@ def index(request):
 
 
 def cursos(request):
-    return render(request, 'cursos.html')
+    cursosListado = Course.objects.all()
+    return render(request, 'cursos.html', {"curso": cursosListado})
 
 
 def crear_curso(request):
@@ -20,3 +22,18 @@ def carreras(request):
 
 def crear_carrera(request):
     return render(request, 'crear_carrera.html')
+
+def eliminar_curso(request,idcourse):
+    curso=Course.objects.get(idcourse=idcourse)
+    curso.delete()
+    return redirect('/cursos/')
+
+def registrar_curso(request):
+    code=request.POST['code']
+    name=request.POST['name']
+    hour=request.POST['hour']
+    credits=request.POST['credits']
+    state=request.POST['state']
+    curso=Course.objects.create(code=code,name=name,hour=hour,credits=credits,state=state)
+    return redirect('/crear_curso/')
+
