@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Mi Proyecto</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img id="logo" src="{% static 'images/logo.png' %}" alt="">
+            <p>UC4 - Asunción & Inca & Sahuma</p>
+        </div>
+    </header>
+    <main>
+        <nav class="menu">
+            <ul>
+                <li><a href="{% url 'cursos' %}">Cursos</a></li>
+                <li><a href="{% url 'crear_curso' %}">Crear Curso</a></li>
+                <li><a href="{% url 'carreras' %}">Carreras</a></li>
+                <li><a href="{% url 'crear_carrera' %}">Crear Carrera</a></li>
+            </ul>
+        </nav>
+    </main>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
